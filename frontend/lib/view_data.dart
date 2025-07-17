@@ -16,7 +16,7 @@ class _ViewDataState extends State<ViewData> {
 
   Future<void> deleteRecord(String uid) async {
     try {
-      String uri = "http://192.168.0.34/practice_api/delete_data.php";
+      String uri = "http://127.0.0.1/practice_api/delete_data.php";
       var res = await http.post(
         Uri.parse(uri),
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -40,7 +40,7 @@ class _ViewDataState extends State<ViewData> {
   }
 
   Future<void> getRecord() async {
-    String uri = "http://192.168.0.34/practice_api/view_data.php";
+    String uri = "http://127.0.0.1/practice_api/view_data.php";
 
     try {
       var res = await http.get(
