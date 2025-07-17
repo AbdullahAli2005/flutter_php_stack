@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crud_mysql/update_record.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,7 +16,7 @@ class _ViewDataState extends State<ViewData> {
 
   Future<void> deleteRecord(String uid) async {
     try {
-      String uri = "http://127.0.0.1/practice_api/delete_data.php";
+      String uri = "http://192.168.0.34/practice_api/delete_data.php";
       var res = await http.post(
         Uri.parse(uri),
         headers: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -39,7 +40,7 @@ class _ViewDataState extends State<ViewData> {
   }
 
   Future<void> getRecord() async {
-    String uri = "http://127.0.0.1/practice_api/view_data.php";
+    String uri = "http://192.168.0.34/practice_api/view_data.php";
 
     try {
       var res = await http.get(
@@ -74,6 +75,20 @@ class _ViewDataState extends State<ViewData> {
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return UpdateRecord(
+                          name: userData[index]['uname'],
+                          email: userData[index]['uemail'],
+                          password: userData[index]['upassword'],
+                        );
+                      },
+                    ),
+                  );
+                },
                 title: Text(userData[index]['uname']),
                 subtitle: Text(userData[index]['uemail']),
                 trailing: IconButton(

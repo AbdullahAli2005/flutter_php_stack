@@ -22,7 +22,7 @@ class _InsertRecordPageState extends State<InsertRecordPage> {
         email.text.isNotEmpty &&
         password.text.isNotEmpty) {
       try {
-        String uri = "http://127.0.0.1/practice_api/insert_record.php";
+        String uri = "http://192.168.0.34/practice_api/insert_record.php";
 
         var res = await http.post(
           Uri.parse(uri),
